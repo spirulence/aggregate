@@ -156,9 +156,11 @@ gwt {
   modules 'org.opendatakit.aggregate.AggregateUI'
   minHeapSize = "512M"
   maxHeapSize = "1024M"
-  localWorkers = 4
-  if (project.hasProperty('gwt.localWorkers')) {
-    localWorkers = project.getProperty('gwt.localWorkers')
+  compiler{
+    localWorkers = 4
+    if (project.hasProperty('gwt.localWorkers')) {
+      localWorkers = project.getProperty('gwt.localWorkers')
+    }
   }
 }
 

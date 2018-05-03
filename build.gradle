@@ -157,9 +157,13 @@ gwt {
   minHeapSize = "512M"
   maxHeapSize = "1024M"
   compiler{
-    localWorkers = 4
+    localWorkers = 1
     if (project.hasProperty('gwt.localWorkers')) {
-      localWorkers = project.getProperty('gwt.localWorkers')
+      if (project.getProperty('gwt.localWorkers').isInteger()) {
+        localWorkers = project.getProperty('gwt.localWorkers').toInteger()
+      } else {
+        throw new GradleException('gwt.localWorkers is set but is not an integer')
+      }
     }
   }
 }
